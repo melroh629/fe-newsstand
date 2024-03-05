@@ -1,3 +1,12 @@
+// 뉴스스탠드 아이콘 클릭 시 페이지 리프레시
+const buttonRefresh = document.getElementById('btn-refresh');
+const refreshPage = () => {
+    location.reload();
+}
+buttonRefresh.addEventListener('click', refreshPage);
+
+
+//시스템 날짜 노출
 const getTodayDate = () => {
     const today = new Date();
     const year = today.getFullYear();
