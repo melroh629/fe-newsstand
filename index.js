@@ -1,4 +1,14 @@
-
+const getTodayDate = () => {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = today.getMonth() + 1;
+    const date = today.getDate();
+    const day = today.getDay();
+    const weekDay = ['일', '월', '화', '수', '목', '금', '토'];
+    
+    document.getElementById('current-date').textContent = `${year}년 ${month}월 ${date}일 ${weekDay[day]}요일`;
+}
+document.addEventListener('DOMContentLoaded', getTodayDate);
 // 언론사 목록을 동적으로 생성하는 코드
 document.addEventListener('DOMContentLoaded', () => {
     const pressList = document.getElementById('press-list');
