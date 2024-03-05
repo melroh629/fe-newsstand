@@ -1,4 +1,4 @@
-
+button {outline: none; border: none;}
 .blind { position: absolute; width: 1px; height: 1px; clip: rect(0 0 0 0); overflow: hidden;}
 main {width: 100%;}
 .inner {width:930px; margin: 0 auto; position: relative; }
@@ -37,7 +37,20 @@ main {width: 100%;}
 }
 .press {
     strong {font-size: 16px; color: #333; font-weight: bold; margin-right:30px; }
-    span {font-size: 14px; color: #666; }
+    span {font-size: 14px; color: #666;}
+    .swiper {
+        position: relative;
+        .button {
+            position: absolute;
+            top: 50%; transform: translateY(-50%);
+            width: 40px; height: 40px;
+            background: url('https://code-squad.s3.ap-northeast-2.amazonaws.com/arrow.png') no-repeat center 100% / contain;
+            cursor: pointer;
+            &.prev {left: -40px; transform: translateY(-50%) rotate(180deg);}
+            &.next {right: -40px;}
+        }
+    }
+    
 }
 .press ul {
     margin-top: 14px;
