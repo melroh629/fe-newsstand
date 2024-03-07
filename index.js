@@ -47,3 +47,6 @@ document.addEventListener('DOMContentLoaded', () => {
         pressList.appendChild(li);
     });
 });
+
+
+//크롤링

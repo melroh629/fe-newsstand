@@ -1,0 +1,15 @@
+{
+  "name": "fe-newsstand",
+  "version": "1.0.0",
+  "description": "News Stand",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Melissa",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.6.7",
+    "cheerio": "^1.0.0-rc.12"
+  }
+}
