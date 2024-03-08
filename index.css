@@ -89,13 +89,12 @@ main {width: 100%;}
         border-right: 1px solid #e5e5e5;
         &:hover .subscribe {
             opacity: 1;
+            display: block;
             display: flex;
-            visibility: visible;
         }
         .subscribe {
             opacity: 0;
             display: none;
-            visibility: hidden;
             position: absolute;
             top: 0;left: 0;
             background: rgb(204 204 204 / 30%);
