@@ -1,0 +1,17 @@
+{
+  "name": "fe-newsstand",
+  "version": "1.0.0",
+  "description": "News Stand",
+  "main": "crawling.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node crawling.js"
+  },
+  "author": "Melissa",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.6.7",
+    "cheerio": "^1.0.0-rc.12",
+    "puppeteer": "^22.4.0"
+  }
+}

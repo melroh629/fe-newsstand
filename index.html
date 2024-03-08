@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>뉴스 스탠드</title>
+    <link href="https://cdn.jsdelivr.net/npm/reset-css@5.0.2/reset.min.css
+" rel="stylesheet">
+
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <main>
+        <section class="main">
+            <div class="inner">
+                <h1 class="logo-area">
+                    <button class="button-refresh" id="btn-refresh" role="button">
+                        <span class="blind">새로고침</span>
+                    </button>
+                    <p>뉴스스탠드</p>
+                </h1>
+                <span id="current-date" class="date"></span>
+            </div>
+        </section>
+        <section class="rolling-news">
+            <div class="inner">
+                <div class="rolling-item">
+                    <b>연합뉴스</b>
+                    <span class="title-list">
+                        
+                    </span>
+                </div>
+                <div class="rolling-item">
+                    <b>연합뉴스</b>
+                    <span class="title-list">
+                        
+                    </span>
+                </div>
+            </div>
+        </section>
+        <section class="press">
+            <div class="inner">
+                <strong>전체 언론사</strong>
+                <span>내가 구독한 언론사</span>
+                <div class="swiper">
+                    <div class="swiper-wrapper">
+                        <!-- js -->
+                    </div>
+                    <button role="button" class="button prev" disabled="false"><span class="blind">이전</span></button>
+                    <button role="button" class="button next" disabled="false"><span class="blind">다음</span></button>
+                </div>
+                
+            </div>
+        </section>
+    </main>
+    <script src="index.js"></script>
+</body>
+</html>
