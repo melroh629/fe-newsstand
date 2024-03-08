@@ -23,8 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(response => response.json())
         .then(pressData => {
             const wrapper = document.querySelector('.swiper-wrapper');
-            console.log(pressData);
-            // 각 슬라이드를 만들고 추가
+            
             let currentSlide;
             let slideCounter = 0;
             pressData.forEach((press, index) => {
@@ -37,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 currentSlide.innerHTML += ListComponent(press);
             });
             
-            //TODO: 버튼 환성화/비활성화
+            //TODO: 버튼 활성화/비활성화
             const prevButton = document.querySelector('.prev');
             prevButton.disabled = true;
 
@@ -87,3 +86,32 @@ function ListComponent(press) {
         `
 }
 
+// 헤드라인 기사 롤링 배너
+
+function getHeadlines() {
+    fetch('headlines.json')
+    .then(response => response.json())
+    .then(headlines => {
+        let currentIndex = 0;
+
+        function updateHeadlines() {
+            const rollingItems = document.querySelectorAll('.title-list');
+
+            rollingItems.forEach((item, index) => {
+                item.querySelectorAll('.title').forEach(titleElement => titleElement.remove());
+        
+                const headlinesForItem = headlines.slice(currentIndex + index * 5, currentIndex + (index + 1) * 5);
+                headlinesForItem.forEach(headline => {
+                    const titleElement = document.createElement('p');
+                    titleElement.className = 'title';
+                    titleElement.textContent = headline;
+                    item.append(titleElement);
+                });
+            });
+            currentIndex = (currentIndex + 5) % headlines.length;
+        }
+        setInterval(updateHeadlines, 3000);
+        
+    });
+}
+getHeadlines();

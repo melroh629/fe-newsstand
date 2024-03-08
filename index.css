@@ -24,6 +24,7 @@ main {width: 100%;}
     margin: 20px 0;
     .inner {display: flex; justify-content: space-between;}
     .rolling-item {
+        
         width: 44%;
         overflow: hidden;
         display: flex;
@@ -33,7 +34,15 @@ main {width: 100%;}
         border-radius: 3px;
         background-color: #f4f4f4;
         b {font-size: 16px; font-weight: bold; margin-right: 10px; color: #111; flex: none;}
-       span {font-size: 14px; color: #666; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;}
+        .title-list {
+            height: 20px;
+            overflow: hidden;
+            line-height: 20px;
+            .title {
+                animation: rollingUp 3s linear infinite;
+                font-size: 14px; color: #666; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; height: 100%; line-height: inherit;}
+        }
+       
     }
 }
 .press {
@@ -114,4 +123,9 @@ main {width: 100%;}
             img { display: block; width: 50%;}
         }
     }
+}
+
+@keyframes rollingUp {
+    from { transform: translateY(0); }
+    to { transform: translateY(-100%); }
 }
