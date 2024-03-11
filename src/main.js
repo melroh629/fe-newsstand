@@ -19,84 +19,70 @@ const getTodayDate = () => {
 document.addEventListener('DOMContentLoaded', getTodayDate);
 
 
+function loadImageData() {
+    return fetch('images.json')
+            .then(response => response.json());
+}
 
-document.addEventListener('DOMContentLoaded', () => {
-    createSwiper();
-    setupEventListeners();
-});
+let currentIndex = 0;
+let wrapper = document.querySelector('.swiper-wrapper');
+const buttonPrevious = document.querySelector('.prev');
+const buttonNext =  document.querySelector('.next');
 
-function createSwiper() {
-    fetch('images.json')
-        .then(response => response.json())
-        .then(pressData => {
-            const wrapper = document.querySelector('.swiper-wrapper');
-            let currentSlide;
-            pressData.forEach((press, index) => {
-                if (index % 24 === 0) {
-                    currentSlide = document.createElement('div');
-                    currentSlide.classList.add('swiper-slide');
-                    wrapper.appendChild(currentSlide);
-                }
-                currentSlide.innerHTML += ListComponent(press);
-            });
-            updateButtonState(); 
+function loadSwiper(){
+    loadImageData().then(imageList => {
+        createSlidesFromData(imageList, 24);
+    });
+    buttonPrevious.addEventListener('click', movePrevious);
+    buttonNext.addEventListener('click', moveNext);
+    updateSlidePosition();
+}
+
+function createSlidesFromData(images, chunkSize) {
+    wrapper.innerHTML = '';
+    for (let i = 0; i < images.length; i += chunkSize) {
+        const slide = document.createElement('div');
+        slide.classList.add('swiper-slide');
+        images.slice(i, i + chunkSize).forEach(image => {
+            const item = document.createElement('div');
+            item.classList.add('swiper-item');
+            item.innerHTML = `
+                <a href="#">
+                    <img src="${image.src}" alt="${image.alt}">
+                </a>
+                <span class="subscribe">
+                    <button class="button-subscribe">+ 구독하기</button>
+                </span>
+            `;
+            slide.appendChild(item);
         });
+        wrapper.appendChild(slide);
+    }
+    currentIndex = 0;
+    updateSlidePosition(); 
 }
 
-function updateButtonState() {
-    const wrapper = document.querySelector('.swiper-wrapper');
-    const nextButton = document.querySelector('.next');
-    const prevButton = document.querySelector('.prev');
-    let currentSlideIndex = Array.from(wrapper.children).findIndex(slide => slide.style.display !== 'none');
-
-    nextButton.disabled = currentSlideIndex === wrapper.children.length - 1;
-    prevButton.disabled = currentSlideIndex === 0;
-}
-
-function moveToNextSlide() {
-    const wrapper = document.querySelector('.swiper-wrapper');
-    let currentSlideIndex = Array.from(wrapper.children).findIndex(slide => slide.style.display !== 'none');
-
-    if (currentSlideIndex < wrapper.children.length - 1) {
-        wrapper.children[currentSlideIndex].style.display = 'none';
-        currentSlideIndex++;
-        wrapper.children[currentSlideIndex].style.display = 'grid';
-        updateButtonState();
+function movePrevious() {
+    
+    if(currentIndex > 0){
+        currentIndex--;
+        updateSlidePosition();
     }
 }
-
-function moveToPreviousSlide() {
-    const wrapper = document.querySelector('.swiper-wrapper');
-    let currentSlideIndex = Array.from(wrapper.children).findIndex(slide => slide.style.display !== 'none');
-
-    if (currentSlideIndex > 0) {
-        wrapper.children[currentSlideIndex].style.display = 'none';
-        currentSlideIndex--;
-        wrapper.children[currentSlideIndex].style.display = 'grid';
-        updateButtonState();
+function moveNext(){
+    if (currentIndex < wrapper.children.length - 1) {
+        currentIndex++;
+        updateSlidePosition();
     }
 }
-
-function setupEventListeners() {
-    document.querySelector('.next').addEventListener('click', moveToNextSlide);
-    document.querySelector('.prev').addEventListener('click', moveToPreviousSlide);
+    
+function updateSlidePosition(){
+    const offset = -currentIndex * 100; 
+    wrapper.style.transform = `translateX(${offset}%)`;
+    currentIndex === 0 ? buttonPrevious.style.display = 'none' : buttonPrevious.style.display = 'block';
+    currentIndex === wrapper.children.length - 1 ? buttonNext.style.display = 'none' : buttonNext.style.display = 'block';
 }
-
-
-function ListComponent(press) {
-    return `
-        <div class="swiper-item">
-            <a href="#">
-                <img id="pressLogo" src="${press.src}" alt="${press.alt}">
-            </a>
-            <span class="subscribe">
-                <button class="button-subscribe">+ 구독하기</button>
-            </span>
-        </div>
-        `
-}
-
-// 헤드라인 기사 롤링 배너
+document.addEventListener('DOMContentLoaded', loadSwiper);
 
 function getHeadlines() {
     fetch('headlines.json')
