@@ -1,23 +1,9 @@
-// 뉴스스탠드 아이콘 클릭 시 페이지 리프레시
-const buttonRefresh = document.getElementById('btn-refresh');
-const refreshPage = () => {
-    location.reload();
-}
-buttonRefresh.addEventListener('click', refreshPage);
 
-//시스템 날짜 노출
-const getTodayDate = () => {
-    const today = new Date();
-    const year = today.getFullYear();
-    const month = today.getMonth() + 1;
-    const date = today.getDate();
-    const day = today.getDay();
-    const weekDay = ['일', '월', '화', '수', '목', '금', '토'];
-    
-    document.getElementById('current-date').textContent = `${year}년 ${month}월 ${date}일 ${weekDay[day]}요일`;
-}
+import { getTodayDate } from './getTodayDate.js';
+import { refreshPage } from './refreshPage.js';
+
 document.addEventListener('DOMContentLoaded', getTodayDate);
-
+refreshPage();
 
 function loadImageData() {
     return fetch('images.json')
