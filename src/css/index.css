@@ -1,4 +1,4 @@
-button {outline: none; border: none;}
+button {outline: none; border: none; background: none; cursor: pointer;}
 * {box-sizing: border-box;}
 .blind { position: absolute; width: 1px; height: 1px; clip: rect(0 0 0 0); overflow: hidden;}
 main {width: 100%;}
@@ -24,7 +24,6 @@ main {width: 100%;}
     margin: 20px 0;
     .inner {display: flex; justify-content: space-between;}
     .rolling-item {
-        
         width: 44%;
         overflow: hidden;
         display: flex;
@@ -45,22 +44,38 @@ main {width: 100%;}
        
     }
 }
-.press {
-    .tab-press {
+.press .tab-area {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+    .tab-press-list {
         display: flex;
-        margin: 10px 0;
-        span {
-            font-size: 16px;
-            cursor: pointer;
-            color: #6c6c6c;
+        align-items: center;
+        button {
+            font-size: 18px;
+            font-weight: bold;
+            color: #aaa;
             font-weight: bold;
             &:first-child {margin-right: 20px;}
+            &.active {color: #333;}
         }
-        .active {
-            color: #000;
+    }
+    .tab-view-type {
+        display: flex;
+        align-items: center;
+        button {
+            width: 20px; 
+            height: 20px; 
+            margin-right: 10px;
+            border: none;
+            background: url('https://code-squad.s3.ap-northeast-2.amazonaws.com/list-view.png') no-repeat center / contain;
+            &.grid {
+                background-image: url('https://code-squad.s3.ap-northeast-2.amazonaws.com/grid-view.png');
+            }
         }
     }
 }
+
 .swiper {
     position: relative;
     .button {
@@ -140,7 +155,56 @@ main {width: 100%;}
     }
 }
 
+.tab-category {
+    display: flex;
+    border: 1px solid #ebebeb;
+    background-color: #F5F7F9;
+    width: 100%;
+    height: 40px;
+    .tab-category-button {
+        position: relative;
+        display: block;
+        height: 100%;
+        padding:0 16px;
+        font-size: 14px;
+        text-decoration: none;
+        color: #666;
+        font-weight: bold;
+        line-height: 40px;
+        transition: all 0.3s ease-out;
+        span {position: relative; z-index: 2;}
+        &::after {
+            content: '';
+            position: absolute;
+            width: 0%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+            background-color: #4362D0;
+        }
+        &:hover {
+            background-color: #7890E7;
+            color: #fff;
+            padding-right: 100px;
+
+        }
+        &:hover::after {
+            animation: fill 20s linear;
+        }
+    }
+}
+
+
+
+@keyframes fill {
+    from { width: 0; }
+    to { width: 100%; }
+
+}
 @keyframes rollingUp {
     from { transform: translateY(0); }
     to { transform: translateY(-100%); }
 }
+
+
