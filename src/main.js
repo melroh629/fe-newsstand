@@ -1,73 +1,33 @@
 import { getTodayDate } from './getTodayDate.js';
 import { refreshPage } from './refreshPage.js';
 import { activeTab } from './tab.js';
-document.addEventListener('DOMContentLoaded', getTodayDate);
-refreshPage();
-activeTab();
+import { getNewsArticles }  from './articles.js'
+import { CustomSwiper1, CustomSwiper2 } from './swiper.js'; 
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    getTodayDate();
+    refreshPage();
+    activeTab();
+    loadSwipers();
+    getHeadlines();
+});
 function loadImageData() {
     return fetch('images.json')
             .then(response => response.json());
 }
-
-let currentIndex = 0;
-let wrapper = document.querySelector('.swiper-wrapper');
-const buttonPrevious = document.querySelector('.prev');
-const buttonNext =  document.querySelector('.next');
-
-function loadSwiper(){
+function loadSwipers() {
     loadImageData().then(imageList => {
-        createSlidesFromData(imageList, 24);
+        const swiper1 = new CustomSwiper1('.swiper-wrapper1', '.swiper.grid .button.prev', '.swiper.grid .button.next');
+        swiper1.createSlidesFromData(imageList, 24);
     });
-    buttonPrevious.addEventListener('click', movePrevious);
-    buttonNext.addEventListener('click', moveNext);
-    updateSlidePosition();
+
+    getNewsArticles().then(articles => {
+        const swiper2 = new CustomSwiper2('.swiper-wrapper2', '.swiper.type2 .button.prev', '.swiper.type2 .button.next');
+        swiper2.createSlidesByArticles(articles);
+    });
 }
 
-function createSlidesFromData(images, chunkSize) {
-    wrapper.innerHTML = '';
-    for (let i = 0; i < images.length; i += chunkSize) {
-        const slide = document.createElement('div');
-        slide.classList.add('swiper-slide');
-        images.slice(i, i + chunkSize).forEach(image => {
-            const item = document.createElement('div');
-            item.classList.add('swiper-item');
-            item.innerHTML = `
-                <a href="#">
-                    <img src="${image.src}" alt="${image.alt}">
-                </a>
-                <span class="subscribe">
-                    <button class="button-subscribe">+ 구독하기</button>
-                </span>
-            `;
-            slide.appendChild(item);
-        });
-        wrapper.appendChild(slide);
-    }
-    currentIndex = 0;
-    updateSlidePosition(); 
-}
-
-function movePrevious() {
-    
-    if(currentIndex > 0){
-        currentIndex--;
-        updateSlidePosition();
-    }
-}
-function moveNext(){
-    if (currentIndex < wrapper.children.length - 1) {
-        currentIndex++;
-        updateSlidePosition();
-    }
-}
-    
-function updateSlidePosition(){
-    const offset = -currentIndex * 100; 
-    wrapper.style.transform = `translateX(${offset}%)`;
-    currentIndex === 0 ? buttonPrevious.style.display = 'none' : buttonPrevious.style.display = 'block';
-    currentIndex === wrapper.children.length - 1 ? buttonNext.style.display = 'none' : buttonNext.style.display = 'block';
-}
-document.addEventListener('DOMContentLoaded', loadSwiper);
 
 function getHeadlines() {
     fetch('headlines.json')
@@ -96,3 +56,4 @@ function getHeadlines() {
     });
 }
 getHeadlines();
+
