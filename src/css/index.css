@@ -1,6 +1,7 @@
 button {outline: none; border: none; background: none; cursor: pointer;}
 * {box-sizing: border-box;}
 .blind { position: absolute; width: 1px; height: 1px; clip: rect(0 0 0 0); overflow: hidden;}
+.none {display: none;}
 main {width: 100%;}
 .inner {width:930px; margin: 0 auto; position: relative; }
 
@@ -69,6 +70,9 @@ main {width: 100%;}
             margin-right: 10px;
             border: none;
             background: url('https://code-squad.s3.ap-northeast-2.amazonaws.com/list-view.png') no-repeat center / contain;
+            &.active {
+                background-color: gold;
+            }
             &.grid {
                 background-image: url('https://code-squad.s3.ap-northeast-2.amazonaws.com/grid-view.png');
             }
@@ -102,8 +106,6 @@ main {width: 100%;}
    
 
 }
-
-
 .swiper-slide {
     width: 100%;
     height: 100%;

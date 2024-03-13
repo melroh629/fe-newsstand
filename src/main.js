@@ -1,10 +1,9 @@
-
 import { getTodayDate } from './getTodayDate.js';
 import { refreshPage } from './refreshPage.js';
-
+import { activeTab } from './tab.js';
 document.addEventListener('DOMContentLoaded', getTodayDate);
 refreshPage();
-
+activeTab();
 function loadImageData() {
     return fetch('images.json')
             .then(response => response.json());
