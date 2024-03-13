@@ -3,13 +3,18 @@ const fs = require('fs');
 
 async function getPressImages(page) {
     let images = [];
+    let newImages = await page.$$eval('.news_logo', elements => elements.map(element => ({
+        src: element.getAttribute('src'),
+        alt: element.getAttribute('alt')
+    })));
+    images.push(...newImages)
     for(let i = 0; i < 3; i++)  {
         await page.click('.ContentPagingView-module__btn_next___ZBhby');
         const newImages = await page.$$eval('.news_logo', elements => elements.map(element => ({
             src: element.getAttribute('src'),
             alt: element.getAttribute('alt')
         })));
-        images = images.concat(newImages);
+        images.push(...newImages);
     }
     return images;
 }
@@ -62,4 +67,4 @@ async function getPressImageList() {
     return { images, headlines };
 }
 
-getPressImageList().then(console.log);
+getPressImageList()

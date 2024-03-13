@@ -4,10 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>뉴스 스탠드</title>
-    <link href="https://cdn.jsdelivr.net/npm/reset-css@5.0.2/reset.min.css
-" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/reset-css@5.0.2/reset.min.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="src/css/index.css">
 </head>
 <body>
     <main>
@@ -40,19 +39,92 @@
         </section>
         <section class="press">
             <div class="inner">
-                <strong>전체 언론사</strong>
-                <span>내가 구독한 언론사</span>
-                <div class="swiper">
-                    <div class="swiper-wrapper">
-                        <!-- js -->
+                <div class="tab-area">
+                    <div class="tab-press-list">
+                        <button role="button" class="active">전체 언론사</button>
+                        <button role="button">내가 구독한 언론사</button>
                     </div>
-                    <button role="button" class="button prev" disabled="false"><span class="blind">이전</span></button>
-                    <button role="button" class="button next" disabled="false"><span class="blind">다음</span></button>
+                    <div class="tab-view-type">
+                        <button role="button" class="button-tab grid active">
+                            <span class="blind">그리드형</span>
+                        </button>
+                        <button role="button" class="button-tab">
+                            <span class="blind">리스트형</span>
+                        </button>
+                    </div>
                 </div>
-                
+                <div id="tabViewType">
+                    <div class="swiper grid tab-content none">
+                        <div class="swiper-container">
+                            <div class="swiper-wrapper1"></div>
+                        </div><!--swiper-container-->
+                        <button role="button" class="button prev"><span class="blind">이전</span></button>
+                        <button role="button" class="button next"><span class="blind">다음</span></button>
+                    </div>
+                    <div class="list-view-content tab-content">
+                        <div class="tab-category">
+                            <a href="#" class="tab-category-button">
+                                <span>종합/경제</span>
+                            </a>
+                            <a href="#" class="tab-category-button">
+                                <span>방송/통신</span>
+                            </a>
+                            <a href="#" class="tab-category-button">
+                                <span>IT</span>
+                            </a>
+                            <a href="#" class="tab-category-button">
+                              <span>영자지</span>
+                            </a>
+                            <a href="#" class="tab-category-button">
+                                <span>스포츠/연예</span>
+                            </a>
+                            <a href="#" class="tab-category-button">
+                                <span>매거진/전문지</span>
+                            </a>
+                            <a href="#" class="tab-category-button">
+                             <span>지역</span>
+                            </a>
+                        </div>
+                        <div class="swiper type2">
+                            <div class="swiper-container">
+                                <div class="swiper-wrapper2">
+                                    <!-- <div class="swiper-slide">
+                                        <div class="news-list-by-category">
+                                            <div class="press-info">
+                                                <a href="#" class="logo">
+                                                    <img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/961.png" alt="메트로뉴스">
+                                                </a>
+                                                <p class="time-stamp">2023.02.10 17:27 편집</p>
+                                                <button role="button">+ 구독하기</button>
+                                            </div>
+                                            <div class="article-box">
+                                                <a href="#" class="image-news">
+                                                    <img src="https://s.pstatic.net/dthumb.phinf/?src=%22https%3A%2F%2Fs.pstatic.net%2Fstatic%2Fnewsstand%2F2024%2F0313%2Farticle_img%2Fnew_main%2F9178%2F113600_001.jpg%22&type=nf312_208&service=navermain" alt="">
+                                                    <p>[연중기획-기업과 나눔(118)] “금융으로 세상 이롭게”…신한은행의 따뜻한 동행</p>
+                                                </a>
+                                                <ul class="title-news">
+                                                    <li>
+                                                        <a href="#" target="_blank">
+                                                            김만재 금속노련 위원장, 조국혁신당 비례대표 신청 김만재 금속노련 위원장, 조국혁신당 비례대표 신청
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                    <!--//swiper-slide-->
+                                    
+                                </div>
+                            </div>
+                            <button role="button" class="button prev other"><span class="blind">이전</span></button>
+                            <button role="button" class="button next other"><span class="blind">다음</span></button>
+                        </div>
+                        
+                    </div>
+                </div>
             </div>
         </section>
     </main>
-    <script src="index.js"></script>
+    <script src="src/main.js" type="module"></script>
 </body>
 </html>
