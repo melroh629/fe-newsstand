@@ -6,7 +6,6 @@ export class Swiper {
         this.buttonNext = document.querySelector(buttonNext);
         this.initEventListeners();
     }
-    
     initEventListeners() {
         this.buttonPrevious.addEventListener('click', () => this.movePrevious());
         this.buttonNext.addEventListener('click', () => this.moveNext());
@@ -22,12 +21,14 @@ export class Swiper {
         if(this.currentIndex > 0){ 
             this.currentIndex--;
             this.updateSlidePosition();
+            this.updateActiveTab();
         }
     }
     moveNext() {
         if (this.currentIndex < this.wrapper.children.length - 1) {
             this.currentIndex++;
             this.updateSlidePosition();
+            this.updateActiveTab();
         }
     }
 }
@@ -121,7 +122,7 @@ export class ArticleListSwiper extends Swiper {
         MoveSlideByTab();
         this.updateSlidePosition();
     }
-     startAutoSlideChange(interval = 20000) {
+    startAutoSlideChange(interval = 20000) {
         this.autoSlideInterval = setInterval(() => {
             this.moveNext();
             this.updateActiveTab();
@@ -130,12 +131,7 @@ export class ArticleListSwiper extends Swiper {
 
     updateActiveTab() {
         const tabButtons = document.querySelectorAll('.tab-category .button-tab');
-        tabButtons.forEach((btn, index) => {
-            btn.classList.remove('active');
-            if (index === this.currentIndex) {
-                btn.classList.add('active');
-            }
-        });
+        updateActiveTabs(tabButtons, this.currentIndex);
     }
 }
 

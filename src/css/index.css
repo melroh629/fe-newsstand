@@ -167,6 +167,7 @@ button {
      width: 930px;
      height: 388px;
      margin-top: 20px;
+     border: 1px solid #ebebeb; 
      overflow: hidden;
      .swiper-wrapper1, .swiper-wrapper2 {
          display: flex;
@@ -181,15 +182,19 @@ button {
      flex: 0 0 auto;
      display: grid;
      grid-template-columns: repeat(6, 1fr);
-     border-top: 1px solid #ebebeb;
-     border-left: 1px solid #ebebeb;
      .swiper-item {
          position: relative;
          display: flex;
          align-items: center;
          justify-content: center;
          border-right: 1px solid #ebebeb;
-         border-bottom: 1px solid #ebebeb;
+        border-bottom: 1px solid #ebebeb;
+            &:nth-child(6n) {
+                border-right: none;}
+            &:nth-last-child(-n+6) {
+                border-bottom: none;
+            }
+            
          &:hover .subscribe {
              display: flex;
              opacity: 1;
@@ -231,8 +236,6 @@ button {
 }
  .list-view-content .swiper-container {
      height: 348px;
-    /* border:1px solid red;
-     */
      margin-top: 0;
      .swiper-slide {
          display: block;
@@ -251,7 +254,7 @@ button {
          justify-content: space-between;
          width: 100%;
          height: 100%;
-         padding:0 16px;
+         padding:0 10px;
          font-size: 14px;
          text-decoration: none;
          color: #666;
@@ -262,10 +265,16 @@ button {
             position: relative;
              z-index: 2;
         }
+        b {
+            display: none;
+        }
          &.active {
              width: 130%;
              background-color: #7890E7;
              color: #fff;
+             b {
+                display: block;
+             }
              &::after {
                 animation: fill 20s linear;
             }
@@ -285,7 +294,7 @@ button {
 }
  .news-list-by-category {
      padding: 24px;
-     border: 1px solid #ebebeb;
+     
      border-top:none 
 }
  .press-info {
@@ -348,7 +357,6 @@ button {
                 margin-bottom: 0;
             }
              a {
-                 border:1px solid red;
                  line-height: 22px;
                  height: 22px;
                  display: block;
