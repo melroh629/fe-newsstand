@@ -34,7 +34,6 @@ main {width: 100%;}
         width: 44%;
         height: 40px;
         overflow: hidden;
-        /* display: flex; */
         padding: 10px;
         align-items: center;
         border: 1px solid #666;
@@ -42,14 +41,16 @@ main {width: 100%;}
         background-color: #f4f4f4;}
     .rolling-item {
         animation: slideUp 30s linear;
+        /* animation-play-state: paused; */
         :hover {animation-play-state: paused;}
-        b {font-size: 16px; font-weight: bold; margin-right: 10px; color: #333; flex: none;}
+        b {font-size: 16px; font-weight: bold; margin-right: 10px; color: #333; flex:none;}
         .title-list {
             display: flex;
             align-items: center;
+            height: 40px;
             .title {
                 text-overflow: ellipsis;
-                font-size: 14px; color: #666; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; height: 100%; line-height: inherit;}
+                font-size: 14px; color: #666; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; }
         }
        
     }
@@ -210,10 +211,6 @@ main {width: 100%;}
             z-index: 0;
             background-color: #4362D0;
         }
-        
-        &:hover::after {
-            /* animation: fill 20s linear; */
-        }
     }
 }
 
@@ -299,7 +296,7 @@ main {width: 100%;}
 
 }
 @keyframes slideUp {
-    from { transform: translateY(0%); }
+    from { transform: translateY(-5%); }
     to { transform: translateY(-90%); }
 }
 

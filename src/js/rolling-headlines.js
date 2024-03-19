@@ -1,5 +1,5 @@
 let headlines = [];
-function getHeadlines() {
+export function getHeadlines() {
     fetch('./data/headlines.json')
         .then(response => response.json())
         .then(data => {
@@ -9,9 +9,7 @@ function getHeadlines() {
         .catch(error => console.error('Error:', error));
 }
 export function updateHeadlines(headline) {
-    //TODO: 이거 타입 수정해야함
-    // console.log(typeof headline)
-    
+    //TODO: 매직넘버 제거할수 있는 방법 알아보기(0, 4, 4, 9)
     const leftHeadline = headline?.slice(0, 4);
     const rightHeadline = headline?.slice(4, 9);
     

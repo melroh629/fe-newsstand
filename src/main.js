@@ -1,15 +1,14 @@
 import { getTodayDate, refreshPage } from './js/util.js';
 import { activeTab } from './js/tab.js';
 import { PressListSwiper, ArticleListSwiper, MoveSlideByTab } from './js/swiper.js'; 
-import { updateHeadlines } from './js/rolling-headlines.js';
+import { getHeadlines } from './js/rolling-headlines.js';
 
 
 document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('#current-date').textContent = getTodayDate();
     refreshPage();
     loadSwipers();
-    updateHeadlines();
-    
+    getHeadlines();
 });
 const TabViewType = document.querySelector('.tab-view-type .button-tab');
 TabViewType.addEventListener('click', function(){
