@@ -30,22 +30,25 @@ main {width: 100%;}
 .rolling-news {
     margin: 20px 0;
     .inner {display: flex; justify-content: space-between;}
-    .rolling-item {
+    .rolling-box {
         width: 44%;
+        height: 40px;
         overflow: hidden;
-        display: flex;
+        /* display: flex; */
         padding: 10px;
         align-items: center;
         border: 1px solid #666;
         border-radius: 3px;
-        background-color: #f4f4f4;
+        background-color: #f4f4f4;}
+    .rolling-item {
+        animation: slideUp 30s linear;
+        :hover {animation-play-state: paused;}
         b {font-size: 16px; font-weight: bold; margin-right: 10px; color: #333; flex: none;}
         .title-list {
-            height: 20px;
-            overflow: hidden;
-            line-height: 20px;
+            display: flex;
+            align-items: center;
             .title {
-                animation: rollingUp 3s linear infinite;
+                text-overflow: ellipsis;
                 font-size: 14px; color: #666; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; height: 100%; line-height: inherit;}
         }
        
@@ -176,9 +179,10 @@ main {width: 100%;}
     background-color: #F5F7F9;
     width: 100%;
     height: 40px;
-    .tab-category-button {
+    .button-tab {
         position: relative;
         display: block;
+        width: 100%;
         height: 100%;
         padding:0 16px;
         font-size: 14px;
@@ -188,8 +192,15 @@ main {width: 100%;}
         line-height: 40px;
         transition: all 0.3s ease-out;
         span {position: relative; z-index: 2;}
+        &.active {
+            width: 130%;
+            background-color: #7890E7;
+            color: #fff;
+            &::after {animation: fill 20s linear;}
+        }
         &::after {
             content: '';
+            animation-play-state: paused;
             position: absolute;
             width: 0%;
             height: 100%;
@@ -198,14 +209,9 @@ main {width: 100%;}
             z-index: 0;
             background-color: #4362D0;
         }
-        &:hover {
-            background-color: #7890E7;
-            color: #fff;
-            padding-right: 100px;
-
-        }
+        
         &:hover::after {
-            animation: fill 20s linear;
+            /* animation: fill 20s linear; */
         }
     }
 }
@@ -291,9 +297,23 @@ main {width: 100%;}
     to { width: 100%; }
 
 }
-@keyframes rollingUp {
-    from { transform: translateY(0); }
-    to { transform: translateY(-100%); }
+@keyframes slideUp {
+    from { transform: translateY(0%); }
+    to { transform: translateY(-90%); }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

@@ -5,7 +5,6 @@ export class Swiper {
         this.buttonPrevious = document.querySelector(buttonPrevious);
         this.buttonNext = document.querySelector(buttonNext);
         this.initEventListeners();
-        // console.log(buttonPrevious, buttonNext, wrapper)
     }
     
     initEventListeners() {
@@ -35,7 +34,6 @@ export class Swiper {
 
 export class CustomSwiper1 extends Swiper {
     createSlidesFromData(images, chunkSize) {
-        console.log(this.wrapper)
         this.wrapper.innerHTML = '';
         for (let i = 0; i < images.length; i += chunkSize) {
             const slide = document.createElement('div');
@@ -62,65 +60,101 @@ export class CustomSwiper1 extends Swiper {
 
 export class CustomSwiper2 extends Swiper {
     createSlidesByArticles(articles) {
-        this.wrapper.innerHTML = ''; 
-        
-        articles.forEach(article => {
-            const articleContainer = document.createElement('div');
-            console.log
-            const main = articles[0];
-            const sub = articles.slice(1)
-            articleContainer.innerHTML = `
-                    ${ArticleComponent(main, sub)}
+        this.wrapper.innerHTML = '';
+
+        articles.forEach((article, index) => {
+            const slideDiv = document.createElement('div');
+            slideDiv.className = `swiper-slide slide${index}`;
+
+            const newsListDiv = document.createElement('div');
+            newsListDiv.className = 'news-list-by-category';
+
+            
+            const pressInfoDiv = document.createElement('div');
+            pressInfoDiv.className = 'press-info';
+            pressInfoDiv.innerHTML = `
+                <a href="#" class="logo">
+                    <img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/961.png" alt="메트로뉴스">
+                </a>
+                <p class="time-stamp">2023.02.10 17:27 편집</p>
+                <button role="button">+ 구독하기</button>
             `;
-            articleContainer.classList.add('swiper-slide');
-            this.wrapper.appendChild(articleContainer);
+            newsListDiv.appendChild(pressInfoDiv);
+
+            
+            const articleBoxDiv = document.createElement('div');
+            articleBoxDiv.className = 'article-box';
+
+            
+            const imageNewsAnchor = document.createElement('a');
+            imageNewsAnchor.href = article.headlines[0].url;
+            imageNewsAnchor.className = 'image-news';
+            imageNewsAnchor.innerHTML = `
+                <img src="${article.headlines[0].image || 'https://s.pstatic.net/static/newsstand/up/2020/0903/nsd185259316.png'}" alt="">
+                <p>${article.headlines[0].title}</p>
+            `;
+            articleBoxDiv.appendChild(imageNewsAnchor);
+
+            
+            const titleNewsUl = document.createElement('ul');
+            titleNewsUl.className = 'title-news';
+
+
+            article.headlines.slice(1).forEach(headline => {
+                const li = document.createElement('li');
+                const anchor = document.createElement('a');
+                anchor.href = headline.url;
+                anchor.target = '_blank';
+                anchor.textContent = headline.title;
+                li.appendChild(anchor);
+                titleNewsUl.appendChild(li);
+            });
+
+            articleBoxDiv.appendChild(titleNewsUl);
+            newsListDiv.appendChild(articleBoxDiv);
+            slideDiv.appendChild(newsListDiv);
+
+            
+            this.wrapper.appendChild(slideDiv);
         });
         this.currentIndex = 0;
+        MoveSlideByTab();
         this.updateSlidePosition();
     }
 }
-// function MainArticleComponent(article) {
-//     return `<a href="${article.url}" class="image-news">
-//                 <img src="${article.urlToImage}" alt="">
-//             <p>${article.title}</p>
-//         </a>`;
-// }
 
-// function ArticleListComponent(article) {
-//     return `<ul class="title-news">
-//         <li>
-//             <a href="${article.url}" target="_blank">
-//                 ${article.title}
-//             </a>
-//         </li>
-//     </ul>`;
-// }
 
-function ArticleComponent (main,sub){
-    
-    return `<div class="news-list-by-category">
-        <div class="press-info">
-            <a href="#" class="logo">
-                <img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/961.png" alt="메트로뉴스">
-            </a>
-            <p class="time-stamp">2023.02.10 17:27 편집</p>
-            <button role="button">+ 구독하기</button>
-        </div>
-        <div class="article-box">
-            <a href="${main.url}" class="image-news">
-                <img src="${main.urlToImage}" alt="">
-                <span>${main.title}</span>
-            </a>
-            <ul class="title-news">
-                <li>
-                    <a href="${sub.url}" target="_blank">
-                        ${sub.title}
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>`;
+export function MoveSlideByTab(){
+    const TabButton = document.querySelectorAll('.tab-category .button-tab');
+    TabButton.forEach((button) => {
+        button.addEventListener('click', (e) => {
+            e.preventDefault();
+            activeTab(TabButton);
+            const swiperWrapper = document.querySelector('.swiper-wrapper2');
+            translateX(swiperWrapper);
+        });
+    });
 }
+function activeTab(button){
+    button.forEach((btn)=>{
+        btn.addEventListener('click', function(){
+            document.querySelector('.tab-category .button-tab.active')?.classList.remove('active');
+            this.classList.add('active');
+        });
+    });
+}
+function translateX(wrapper){
+    
+
+    //length로 하면 안댐
+    console.log(wrapper.children)
+
+    wrapper.style.transform = `translateX(-${index * 100}%)`;
+}
+
+
+
+
 
 // const swiper1 = new CustomSwiper1('.swiper-wrapper1');
 // const swiper2 = new CustomSwiper2('.swiper-wrapper2');
