@@ -78,9 +78,8 @@ button {
          background-color: #f4f4f4;
     }
      .rolling-item {
-         animation: slideUp 30s linear;
-        /* animation-play-state: paused;
-         */
+         animation: slideUp 30s linear infinite;
+        /* animation-play-state: paused; */
          :hover {
             animation-play-state: paused;
         }
@@ -261,7 +260,7 @@ button {
          font-weight: bold;
          line-height: 40px;
          transition: all 0.3s ease-out;
-         span {
+         span, b {
             position: relative;
              z-index: 2;
         }
@@ -381,7 +380,7 @@ button {
          transform: translateY(-5%);
     }
      to {
-         transform: translateY(-90%);
+         transform: translateY(-85%);
     }
 }
  
