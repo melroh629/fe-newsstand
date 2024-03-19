@@ -32,7 +32,7 @@ export class Swiper {
     }
 }
 
-export class CustomSwiper1 extends Swiper {
+export class PressListSwiper extends Swiper {
     createSlidesFromData(images, chunkSize) {
         this.wrapper.innerHTML = '';
         for (let i = 0; i < images.length; i += chunkSize) {
@@ -58,7 +58,7 @@ export class CustomSwiper1 extends Swiper {
     }
 }
 
-export class CustomSwiper2 extends Swiper {
+export class ArticleListSwiper extends Swiper {
     createSlidesByArticles(articles) {
         this.wrapper.innerHTML = '';
 
@@ -121,40 +121,54 @@ export class CustomSwiper2 extends Swiper {
         MoveSlideByTab();
         this.updateSlidePosition();
     }
+     startAutoSlideChange(interval = 20000) {
+        this.autoSlideInterval = setInterval(() => {
+            this.moveNext();
+            this.updateActiveTab();
+        }, interval);
+    }
+
+    updateActiveTab() {
+        const tabButtons = document.querySelectorAll('.tab-category .button-tab');
+        tabButtons.forEach((btn, index) => {
+            btn.classList.remove('active');
+            if (index === this.currentIndex) {
+                btn.classList.add('active');
+            }
+        });
+    }
 }
 
 
-export function MoveSlideByTab(){
-    const TabButton = document.querySelectorAll('.tab-category .button-tab');
-    TabButton.forEach((button) => {
+export function MoveSlideByTab() {
+    const tabButtons = document.querySelectorAll('.tab-category .button-tab');
+    const swiperWrapper = document.querySelector('.swiper-wrapper2');
+    tabButtons.forEach((button, index) => {
         button.addEventListener('click', (e) => {
             e.preventDefault();
-            activeTab(TabButton);
-            const swiperWrapper = document.querySelector('.swiper-wrapper2');
-            translateX(swiperWrapper);
+            updateActiveTabs(tabButtons, index);
+            translateX(swiperWrapper, index);
+            const swiperInstance = swiperWrapper.__swiperInstance;
+            if (swiperInstance) {
+                swiperInstance.currentIndex = index;
+                swiperInstance.updateSlidePosition();
+            }
         });
     });
 }
-function activeTab(button){
-    button.forEach((btn)=>{
-        btn.addEventListener('click', function(){
-            document.querySelector('.tab-category .button-tab.active')?.classList.remove('active');
-            this.classList.add('active');
-        });
+
+function updateActiveTabs(buttons, activeIndex) {
+    buttons.forEach((btn, index) => {
+        btn.classList.remove('active');
+        if (index === activeIndex) {
+            btn.classList.add('active');
+        }
     });
 }
-function translateX(wrapper){
-    
 
-    //length로 하면 안댐
-    console.log(wrapper.children)
-
+function translateX(wrapper, index){
     wrapper.style.transform = `translateX(-${index * 100}%)`;
 }
 
 
 
-
-
-// const swiper1 = new CustomSwiper1('.swiper-wrapper1');
-// const swiper2 = new CustomSwiper2('.swiper-wrapper2');
