@@ -2,11 +2,11 @@
   "name": "fe-newsstand",
   "version": "1.0.0",
   "description": "News Stand",
-  "main": "src/crawling.js",
+  "main": "data/crawling.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node src/crawling.js"
+    "start": "node data/crawling.js"
   },
   "author": "Melissa",
   "license": "ISC",

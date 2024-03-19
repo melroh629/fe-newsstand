@@ -66,8 +66,11 @@ export class CustomSwiper2 extends Swiper {
         
         articles.forEach(article => {
             const articleContainer = document.createElement('div');
+            console.log
+            const main = articles[0];
+            const sub = articles.slice(1)
             articleContainer.innerHTML = `
-                    ${ArticleComponent(article)}
+                    ${ArticleComponent(main, sub)}
             `;
             articleContainer.classList.add('swiper-slide');
             this.wrapper.appendChild(articleContainer);
@@ -93,7 +96,8 @@ export class CustomSwiper2 extends Swiper {
 //     </ul>`;
 // }
 
-function ArticleComponent (article){
+function ArticleComponent (main,sub){
+    
     return `<div class="news-list-by-category">
         <div class="press-info">
             <a href="#" class="logo">
@@ -103,14 +107,14 @@ function ArticleComponent (article){
             <button role="button">+ 구독하기</button>
         </div>
         <div class="article-box">
-            <a href="${article.url}" class="image-news">
-                <img src="${article.urlToImage}" alt="">
-                <p>${article.title}</p>
+            <a href="${main.url}" class="image-news">
+                <img src="${main.urlToImage}" alt="">
+                <span>${main.title}</span>
             </a>
             <ul class="title-news">
                 <li>
-                    <a href="${article.url}" target="_blank">
-                        ${article.title}
+                    <a href="${sub.url}" target="_blank">
+                        ${sub.title}
                     </a>
                 </li>
             </ul>

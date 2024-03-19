@@ -1,8 +1,8 @@
-import { getTodayDate } from './getTodayDate.js';
-import { refreshPage } from './refreshPage.js';
-import { activeTab } from './tab.js';
-import { getNewsArticles }  from './articles.js'
-import { CustomSwiper1, CustomSwiper2 } from './swiper.js'; 
+import { getTodayDate } from './js/getTodayDate.js';
+import { refreshPage } from './js/refreshPage.js';
+import { activeTab } from './js/tab.js';
+import { getNewsArticles }  from './js/articles.js'
+import { CustomSwiper1, CustomSwiper2 } from './js/swiper.js'; 
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     getHeadlines();
 });
 function loadImageData() {
-    return fetch('images.json')
+    return fetch('./data/images.json')
             .then(response => response.json());
 }
 function loadSwipers() {
@@ -27,33 +27,4 @@ function loadSwipers() {
         swiper2.createSlidesByArticles(articles);
     });
 }
-
-
-function getHeadlines() {
-    fetch('headlines.json')
-    .then(response => response.json())
-    .then(headlines => {
-        let currentIndex = 0;
-
-        function updateHeadlines() {
-            const rollingItems = document.querySelectorAll('.title-list');
-
-            rollingItems.forEach((item, index) => {
-                item.querySelectorAll('.title').forEach(titleElement => titleElement.remove());
-        
-                const headlinesForItem = headlines.slice(currentIndex + index * 5, currentIndex + (index + 1) * 5);
-                headlinesForItem.forEach(headline => {
-                    const titleElement = document.createElement('p');
-                    titleElement.className = 'title';
-                    titleElement.textContent = headline;
-                    item.append(titleElement);
-                });
-            });
-            currentIndex = (currentIndex + 5) % headlines.length;
-        }
-        setInterval(updateHeadlines, 3000);
-        
-    });
-}
-getHeadlines();
 
