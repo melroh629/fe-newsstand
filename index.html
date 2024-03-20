@@ -23,17 +23,11 @@
         </section>
         <section class="rolling-news">
             <div class="inner">
-                <div class="rolling-item">
-                    <b>연합뉴스</b>
-                    <span class="title-list">
-                        
-                    </span>
+                <div class="rolling-box">
+                    <div class="rolling-item" id="rollingLeft"></div>
                 </div>
-                <div class="rolling-item">
-                    <b>연합뉴스</b>
-                    <span class="title-list">
-                        
-                    </span>
+                <div class="rolling-box">
+                    <div class="rolling-item" id="rollingRight"></div>
                 </div>
             </div>
         </section>
@@ -54,41 +48,52 @@
                     </div>
                 </div>
                 <div id="tabViewType">
-                    <div class="swiper grid tab-content none">
+                    <div class="swiper grid tab-content">
                         <div class="swiper-container">
-                            <div class="swiper-wrapper1"></div>
+                            <div class="swiper-wrapper1">
+                                <!-- 슬ㄹㅏ이드 -->
+                                <!-- 슬ㄹㅏ이드 -->
+                                <!-- 슬ㄹㅏ이드 -->
+                            </div>
                         </div><!--swiper-container-->
                         <button role="button" class="button prev"><span class="blind">이전</span></button>
                         <button role="button" class="button next"><span class="blind">다음</span></button>
                     </div>
-                    <div class="list-view-content tab-content">
+                    <div class="list-view-content tab-content none">
                         <div class="tab-category">
-                            <a href="#" class="tab-category-button">
+                            <a href="#" class="button-tab active">
                                 <span>종합/경제</span>
+                                <b>2/5</b>
                             </a>
-                            <a href="#" class="tab-category-button">
+                            <a href="#" class="button-tab">
                                 <span>방송/통신</span>
+                                <b>2/5</b>
                             </a>
-                            <a href="#" class="tab-category-button">
+                            <a href="#" class="button-tab">
                                 <span>IT</span>
+                                <b>2/5</b>
                             </a>
-                            <a href="#" class="tab-category-button">
+                            <a href="#" class="button-tab">
                               <span>영자지</span>
+                              <b>2/5</b>
                             </a>
-                            <a href="#" class="tab-category-button">
+                            <a href="#" class="button-tab">
                                 <span>스포츠/연예</span>
+                                <b>2/5</b>
                             </a>
-                            <a href="#" class="tab-category-button">
-                                <span>매거진/전문지</span>
+                            <a href="#" class="button-tab">
+                                <span>매거진/전문지</span>  
+                                <b>2/5</b>
                             </a>
-                            <a href="#" class="tab-category-button">
-                             <span>지역</span>
+                            <a href="#" class="button-tab">
+                                <span>지역</span>
+                                <b>2/5</b>
                             </a>
                         </div>
                         <div class="swiper type2">
                             <div class="swiper-container">
                                 <div class="swiper-wrapper2">
-                                    <!-- <div class="swiper-slide">
+                                    `<div class="swiper-slide">
                                         <div class="news-list-by-category">
                                             <div class="press-info">
                                                 <a href="#" class="logo">
@@ -98,20 +103,21 @@
                                                 <button role="button">+ 구독하기</button>
                                             </div>
                                             <div class="article-box">
-                                                <a href="#" class="image-news">
-                                                    <img src="https://s.pstatic.net/dthumb.phinf/?src=%22https%3A%2F%2Fs.pstatic.net%2Fstatic%2Fnewsstand%2F2024%2F0313%2Farticle_img%2Fnew_main%2F9178%2F113600_001.jpg%22&type=nf312_208&service=navermain" alt="">
-                                                    <p>[연중기획-기업과 나눔(118)] “금융으로 세상 이롭게”…신한은행의 따뜻한 동행</p>
+                                                <a href="${headlines[0].url}" class="image-news">
+                                                    <img src="${headlines[0].image}" alt="">
+                                                    <p>${headlines[0].title}</p>
                                                 </a>
                                                 <ul class="title-news">
+                                                    //headlines[1]~ 마지막까지
                                                     <li>
-                                                        <a href="#" target="_blank">
-                                                            김만재 금속노련 위원장, 조국혁신당 비례대표 신청 김만재 금속노련 위원장, 조국혁신당 비례대표 신청
+                                                        <a href="${headlines.url}" target="_blank">
+                                                            ${headlines.title}
                                                         </a>
                                                     </li>
                                                 </ul>
                                             </div>
                                         </div>
-                                    </div> -->
+                                    </div>`
                                     <!--//swiper-slide-->
                                     
                                 </div>

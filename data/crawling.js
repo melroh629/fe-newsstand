@@ -19,13 +19,10 @@ async function getPressImages(page) {
     return images;
 }
 
-
-
 function saveToJson(images) {
     const imagesJson = JSON.stringify(images, null, 2);
     writeFileSync('./data/images.json', imagesJson);
 }
-
 
 async function getPressImageList() {
     const browser = await launch();
