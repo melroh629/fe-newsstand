@@ -2,6 +2,7 @@ import { getTodayDate, refreshPage } from './js/util.js';
 import { activeTab } from './js/tab.js';
 import { PressListSwiper, ArticleListSwiper, MoveSlideByTab } from './js/swiper.js'; 
 import { getHeadlines } from './js/rolling-headlines.js';
+import { handleSubscribe } from './js/subscribe.js';
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -10,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     loadSwipers();
     getHeadlines();
 });
+
 const TabViewType = document.querySelector('.tab-view-type .button-tab');
 TabViewType.addEventListener('click', function(){
     activeTab();
@@ -27,12 +29,15 @@ function loadSwipers() {
     loadImageData().then(imageList => {
         const pressSwiper = new PressListSwiper('.swiper-wrapper1', '.swiper.grid .button.prev', '.swiper.grid .button.next');
         pressSwiper.createSlidesFromData(imageList, 24);
+    })
+    .then(() => {
+        handleSubscribe();
     });
-    
     loadArticles().then(articles => {
         const articleSwiper = new ArticleListSwiper('.swiper-wrapper2', '.swiper.type2 .button.prev', '.swiper.type2 .button.next');
         articleSwiper.createSlidesByArticles(articles);
         articleSwiper.startAutoSlideChange();
         MoveSlideByTab();
     });
+    
 }

@@ -1,3 +1,5 @@
+import { ImageGridItem } from "../component/SwiperCompent.js";
+
 export class Swiper {
     constructor(wrapper, buttonPrevious, buttonNext) {
         this.currentIndex = 0;
@@ -28,6 +30,7 @@ export class Swiper {
         if (this.currentIndex < this.wrapper.children.length - 1) {
             this.currentIndex++;
             this.updateSlidePosition();
+            //TODO: tab버튼이 없는 경우 에러 발생
             this.updateActiveTab();
         }
     }
@@ -40,17 +43,7 @@ export class PressListSwiper extends Swiper {
             const slide = document.createElement('div');
             slide.classList.add('swiper-slide');
             images.slice(i, i + chunkSize).forEach(image => {
-                const item = document.createElement('div');
-                item.classList.add('swiper-item');
-                item.innerHTML = `
-                    <a href="#">
-                        <img src="${image.src}" alt="${image.alt}">
-                    </a>
-                    <span class="subscribe">
-                        <button class="button-subscribe">+ 구독하기</button>
-                    </span>
-                `;
-                slide.appendChild(item);
+                slide.innerHTML += ImageGridItem(image);
             });
             this.wrapper.appendChild(slide);
         }
@@ -91,7 +84,7 @@ export class ArticleListSwiper extends Swiper {
             imageNewsAnchor.href = article.headlines[0].url;
             imageNewsAnchor.className = 'image-news';
             imageNewsAnchor.innerHTML = `
-                <img src="${article.headlines[0].image || 'https://s.pstatic.net/static/newsstand/up/2020/0903/nsd185259316.png'}" alt="">
+                <img src="https://s.pstatic.net/static/newsstand/up/2020/0903/nsd185259316.png" alt="">
                 <p>${article.headlines[0].title}</p>
             `;
             articleBoxDiv.appendChild(imageNewsAnchor);
