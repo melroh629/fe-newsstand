@@ -1,14 +1,54 @@
 {
   "subscription": [
     {
-      "id": "0",
-      "alt": "파이낸셜뉴스",
-      "src": "https://s.pstatic.net/static/newsstand/2020/logo/light/0604/014.png"
+      "id": "4",
+      "alt": "이데일리",
+      "src": "https://s.pstatic.net/static/newsstand/2020/logo/light/0604/018.png"
     },
     {
-      "id": "2",
-      "alt": "조선비즈",
-      "src": "https://s.pstatic.net/static/newsstand/2020/logo/light/0604/366.png"
+      "id": "10",
+      "alt": "한겨레",
+      "src": "https://s.pstatic.net/static/newsstand/up/2024/0219/nsd145828169.png"
+    },
+    {
+      "id": "1",
+      "alt": "뉴시스",
+      "src": "https://s.pstatic.net/static/newsstand/2020/logo/light/0604/003.png"
+    },
+    {
+      "id": "7",
+      "alt": "아시아경제",
+      "src": "https://s.pstatic.net/static/newsstand/2020/logo/light/0604/277.png"
+    },
+    {
+      "id": "13",
+      "alt": "노컷뉴스",
+      "src": "https://s.pstatic.net/static/newsstand/2020/logo/light/0604/079.png"
+    },
+    {
+      "id": "41",
+      "alt": "M이코노미뉴스",
+      "src": "https://s.pstatic.net/static/newsstand/up/2021/1221/nsd15292271.png"
+    },
+    {
+      "id": "35",
+      "alt": "지지통신",
+      "src": "https://s.pstatic.net/static/newsstand/2020/logo/light/0604/376.png"
+    },
+    {
+      "id": "29",
+      "alt": "머니투데이",
+      "src": "https://s.pstatic.net/static/newsstand/2020/logo/light/0604/008.png"
+    },
+    {
+      "id": "11",
+      "alt": "아이뉴스24",
+      "src": "https://s.pstatic.net/static/newsstand/2020/logo/light/0604/031.png"
+    },
+    {
+      "id": "29",
+      "alt": "머니투데이",
+      "src": "https://s.pstatic.net/static/newsstand/2020/logo/light/0604/008.png"
     }
   ]
 }

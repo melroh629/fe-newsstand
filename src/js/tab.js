@@ -1,17 +1,17 @@
-const buttonTab = document.querySelectorAll('.button-tab');
-const tabContent = document.querySelectorAll('#tabViewType > .tab-content');
+// const buttonTab = document.querySelectorAll('.button-tab');
+// const tabContent = document.querySelectorAll('#tabViewType > .tab-content');
 
-export function activeTab () {
+export function activeTab (buttonTab, tabContent) {
     buttonTab.forEach((tab, index) => {
         tab.addEventListener('click', function(){
             document.querySelector('.button-tab.active')?.classList.remove('active');
             this.classList.add('active');
-            showTabContent(index);
+            showTabContent(tabContent,index);
         });
     });
 }
 
-function showTabContent(index) {
+function showTabContent(tabContent,index) {
     for(let i=0; i<tabContent.length; i++){
         if(i === index){
             tabContent[i].classList.remove('none');

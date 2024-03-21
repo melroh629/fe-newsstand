@@ -12,10 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
     getHeadlines();
 });
 
-const TabViewType = document.querySelector('.tab-view-type .button-tab');
-TabViewType.addEventListener('click', function(){
-    activeTab();
-})
+activeTab(document.querySelectorAll('.tab-view-type .button-tab'), document.querySelectorAll('#tabViewType > .tab-content'));
+
 
 //여기서 images.json인지 db.json인지 분기처리 하자
 
@@ -32,14 +30,11 @@ function loadArticles() {
 }
 
 function loadSwipers() {
-    loadImageData(imagePath).then(imageList => {
+    Promise.all([loadImageData(imagePath), loadArticles()]).then(([imageList, articles]) => {
         const pressSwiper = new PressListSwiper('.swiper-wrapper1', '.swiper.grid .button.prev', '.swiper.grid .button.next');
         pressSwiper.createSlidesFromData(imageList, 24);
-    })
-    .then(() => {
         handleSubscribe();
-    });
-    loadArticles().then(articles => {
+
         const articleSwiper = new ArticleListSwiper('.swiper-wrapper2', '.swiper.type2 .button.prev', '.swiper.type2 .button.next');
         articleSwiper.createSlidesByArticles(articles);
         articleSwiper.startAutoSlideChange();

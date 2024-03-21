@@ -182,21 +182,22 @@ button {
      display: grid;
      grid-template-columns: repeat(6, 1fr);
      .swiper-item {
-         position: relative;
-         display: flex;
-         align-items: center;
-         justify-content: center;
-         border-right: 1px solid #ebebeb;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-right: 1px solid #ebebeb;
         border-bottom: 1px solid #ebebeb;
-            &:nth-child(6n) {
-                border-right: none;}
-            &:nth-last-child(-n+6) {
-                border-bottom: none;
-            }
-            
-         &:hover .subscribe {
-             display: flex;
-             opacity: 1;
+        &.dummy a img {opacity: 0;}
+        &:nth-child(6n) {
+            border-right: none;}
+        &:nth-last-child(-n+6) {
+            border-bottom: none;
+        }
+        &:hover .subscribe {
+            display: flex;
+            opacity: 1;
+             /* display: none; */
         }
          .subscribe {
              display: none;

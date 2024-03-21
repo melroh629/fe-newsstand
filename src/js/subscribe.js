@@ -1,6 +1,7 @@
+let subscribeArray = [];
 export function handleSubscribe(){
     const buttonSubscribe = document.querySelectorAll('.swiper-item .button-subscribe');
-    buttonSubscribe.forEach((button,index) => {
+    buttonSubscribe.forEach((button, index) => {
         button.addEventListener('click', function(){
             const pressName = this.closest('.swiper-item').querySelector('img').alt;
             const pressImgSrc = this.closest('.swiper-item').querySelector('img').src;
@@ -9,19 +10,30 @@ export function handleSubscribe(){
                 alt: pressName,
                 src: pressImgSrc
             };
-            handleSubmitList(subscribeList);
-        });
+            let isSubscribed = false; 
+            subscribeArray.forEach(data => {
+                if (data.alt === subscribeList.alt) {
+                    alert('이미 구독한 언론사입니다.');
+                    isSubscribed = true; 
+                    return;
+                }
+            });
+            if (!isSubscribed) { 
+                handleSubmitList(subscribeList);
+                subscribeArray.push(subscribeList); 
+            }
+        });        
     });
 }
 
-function snackBar() {
-    const test = document.createElement('div');
-    test.className = 'subscribe-success';
-    test.textContent = '내가 구독한 언론사에 추가되었습니다.';
-    document.body.appendChild(test); 
 
+function snackBar() {
+    const alertSnack = document.createElement('div');
+    alertSnack.className = 'subscribe-success';
+    alertSnack.textContent = '내가 구독한 언론사에 추가되었습니다.';
+    document.body.appendChild(alertSnack); 
     setTimeout(() => {
-        test.remove();
+        alertSnack.remove();
     }, 5000);
 }
 
@@ -35,8 +47,8 @@ function handleSubmitList(subscribeList){
         body: JSON.stringify(subscribeList)
     })
     .then(response => response.json())
-    .then(data => {
-        console.log('Success:', data);
-        snackBar();
-    })
+    .then(()=> {snackBar();})
+    .catch((error) => {
+        console.error('Error:', error);
+    });
 }
