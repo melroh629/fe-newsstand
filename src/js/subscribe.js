@@ -6,8 +6,8 @@ export function handleSubscribe(){
             const pressImgSrc = this.closest('.swiper-item').querySelector('img').src;
             const subscribeList = {
                 id: `${index}`,
-                pressName: pressName,
-                pressImgSrc: pressImgSrc
+                alt: pressName,
+                src: pressImgSrc
             };
             handleSubmitList(subscribeList);
         });

@@ -16,8 +16,13 @@ const TabViewType = document.querySelector('.tab-view-type .button-tab');
 TabViewType.addEventListener('click', function(){
     activeTab();
 })
-function loadImageData() {
-    return fetch('./data/images.json')
+
+//여기서 images.json인지 db.json인지 분기처리 하자
+
+let imagePath = './data/images.json';
+
+function loadImageData(imagePath) {
+    return fetch(imagePath)
             .then(response => response.json());
 }
 
@@ -25,8 +30,9 @@ function loadArticles() {
     return fetch('./data/articles.json')
             .then(response => response.json());
 }
+
 function loadSwipers() {
-    loadImageData().then(imageList => {
+    loadImageData(imagePath).then(imageList => {
         const pressSwiper = new PressListSwiper('.swiper-wrapper1', '.swiper.grid .button.prev', '.swiper.grid .button.next');
         pressSwiper.createSlidesFromData(imageList, 24);
     })
@@ -39,5 +45,15 @@ function loadSwipers() {
         articleSwiper.startAutoSlideChange();
         MoveSlideByTab();
     });
-    
 }
+
+document.querySelector('#pressSubscribe').addEventListener('click', function() {
+    imagePath = 'http://localhost:3000/subscription';
+    console.log(imagePath);
+    loadSwipers();
+});
+
+document.querySelector('#pressAll').addEventListener('click', function() {
+    imagePath = './data/images.json';
+    loadSwipers();
+});

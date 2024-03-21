@@ -42,14 +42,20 @@ export class PressListSwiper extends Swiper {
         for (let i = 0; i < images.length; i += chunkSize) {
             const slide = document.createElement('div');
             slide.classList.add('swiper-slide');
+            console.log(images.length)
             images.slice(i, i + chunkSize).forEach(image => {
                 slide.innerHTML += ImageGridItem(image);
+                
             });
             this.wrapper.appendChild(slide);
         }
         this.currentIndex = 0;
         this.updateSlidePosition();
     }
+}
+
+function dummyItem() {
+    return `<div class="swiper-item"></div>`;
 }
 
 export class ArticleListSwiper extends Swiper {

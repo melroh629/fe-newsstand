@@ -1,6 +1,6 @@
 export function ImageGridItem (image) {
     return `<div class="swiper-item">
-    <a href="#">
+        <a href="#">
             <img src="${image.src}" alt="${image.alt}">
         </a>
         <span class="subscribe">
