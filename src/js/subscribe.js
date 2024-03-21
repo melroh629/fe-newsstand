@@ -21,7 +21,7 @@ export function handleSubscribe(){
                 }
             });
             if (!isSubscribed) { 
-                handleSubmitList(subscribeList);
+                handleSubmit(subscribeList);
                 subscribeArray.push(subscribeList); 
             }   
     });
@@ -39,7 +39,7 @@ function snackBar() {
 }
 
 
-function handleSubmitList(subscribeList){
+function handleSubmit(subscribeList){
     fetch('http://localhost:3000/subscription', {
         method: 'POST',
         headers: {

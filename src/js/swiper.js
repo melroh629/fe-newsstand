@@ -60,6 +60,10 @@ export class PressListSwiper extends Swiper {
                 document.querySelector('.swiper-slide').innerHTML += dummyItem();
             }
         }
+        if(this.wrapper.children.length === 0){
+            let content = Array(chunkSize).fill(0).map(dummyItem).join('');
+            this.wrapper.innerHTML = `<div class="swiper-slide">${content}</div>`;
+        }
         this.currentIndex = 0;
         this.updateSlidePosition();
     }
