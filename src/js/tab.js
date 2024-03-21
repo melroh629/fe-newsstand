@@ -1,6 +1,3 @@
-// const buttonTab = document.querySelectorAll('.button-tab');
-// const tabContent = document.querySelectorAll('#tabViewType > .tab-content');
-
 export function activeTab (buttonTab, tabContent) {
     buttonTab.forEach((tab, index) => {
         tab.addEventListener('click', function(){

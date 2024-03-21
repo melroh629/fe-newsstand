@@ -5,27 +5,28 @@ export function handleSubscribe(){
         button.addEventListener('click', function(){
             const pressName = this.closest('.swiper-item').querySelector('img').alt;
             const pressImgSrc = this.closest('.swiper-item').querySelector('img').src;
+
             const subscribeList = {
                 id: `${index}`,
                 alt: pressName,
-                src: pressImgSrc
+                src: pressImgSrc,
+                isSubscribe: true,
             };
-            let isSubscribed = false; 
+            let isSubscribed = false;
             subscribeArray.forEach(data => {
                 if (data.alt === subscribeList.alt) {
                     alert('이미 구독한 언론사입니다.');
-                    isSubscribed = true; 
+                    isSubscribed = true;
                     return;
                 }
             });
             if (!isSubscribed) { 
                 handleSubmitList(subscribeList);
                 subscribeArray.push(subscribeList); 
-            }
-        });        
+            }   
     });
+});
 }
-
 
 function snackBar() {
     const alertSnack = document.createElement('div');

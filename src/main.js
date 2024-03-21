@@ -44,7 +44,6 @@ function loadSwipers() {
 
 document.querySelector('#pressSubscribe').addEventListener('click', function() {
     imagePath = 'http://localhost:3000/subscription';
-    console.log(imagePath);
     loadSwipers();
 });
 
