@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     getHeadlines();
 });
 
-activeTab(document.querySelectorAll('.tab-view-type .button-tab'), document.querySelectorAll('#tabdataType > .tab-content'));
+activeTab(document.querySelectorAll('.tab-view-type .button-tab'), document.querySelectorAll('#tabViewType > .tab-content'));
 activeTab(document.querySelectorAll('.tab-press-list .button-tab'));
 
 function loadImageData() {
