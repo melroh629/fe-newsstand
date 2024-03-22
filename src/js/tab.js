@@ -1,9 +1,11 @@
 export function activeTab (buttonTab, tabContent) {
     buttonTab.forEach((tab, index) => {
         tab.addEventListener('click', function(){
-            document.querySelector('.button-tab.active')?.classList.remove('active');
-            this.classList.add('active');
             showTabContent(tabContent,index);
+            buttonTab.forEach((tab) => {
+                tab.classList.remove('active');
+            });
+            tab.classList.add('active');
         });
     });
 }
