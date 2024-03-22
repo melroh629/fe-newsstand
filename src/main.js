@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 activeTab(document.querySelectorAll('.tab-view-type .button-tab'), document.querySelectorAll('#tabViewType > .tab-content'));
+activeTab(document.querySelectorAll('.tab-press-list .button-tab'));
 
 let imagePath = './data/images.json';
 
