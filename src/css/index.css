@@ -79,8 +79,7 @@ button {
     }
      .rolling-item {
          animation: slideUp 30s linear infinite;
-        /* animation-play-state: paused; */
-         :hover {
+         &:hover {
             animation-play-state: paused;
         }
          b {
