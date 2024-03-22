@@ -94,12 +94,11 @@ button {
              align-items: center;
              height: 40px;
              .title {
-                 text-overflow: ellipsis;
-                 font-size: 14px;
-                 color: #666;
-                 text-overflow: ellipsis;
-                 white-space: nowrap;
-                 overflow: hidden;
+                text-overflow: ellipsis;
+                font-size: 14px;
+                color: #666;
+                white-space: nowrap;
+                overflow: hidden;
             }
         }
     }

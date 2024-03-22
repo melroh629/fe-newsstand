@@ -48,7 +48,9 @@ function handleSubmit(subscribeList){
         body: JSON.stringify(subscribeList)
     })
     .then(response => response.json())
-    .then(()=> {snackBar();})
+    .then(()=> {
+        snackBar();
+    })
     .catch((error) => {
         console.error('Error:', error);
     });

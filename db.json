@@ -1,9 +1,15 @@
 {
   "subscription": [
     {
-      "id": "0",
-      "alt": "전자신문",
-      "src": "https://s.pstatic.net/static/newsstand/2020/logo/light/0604/030.png",
+      "id": "2",
+      "alt": "조선비즈",
+      "src": "https://s.pstatic.net/static/newsstand/2020/logo/light/0604/366.png",
+      "isSubscribe": true
+    },
+    {
+      "id": "5",
+      "alt": "문화일보",
+      "src": "https://s.pstatic.net/static/newsstand/2020/logo/light/0604/021.png",
       "isSubscribe": true
     }
   ]

@@ -1,4 +1,4 @@
-import { loadSwipers } from '../main.js'
+import { updateAndLoadSwipers, loadSwipers } from '../main.js';
 
 export function getSubscribeList(){
     fetch('http://localhost:3000/subscription')
@@ -23,15 +23,13 @@ export function handleUnsubscribe(data){
     });
 }
 
-
-
 function handleDelete(id){
     fetch(`http://localhost:3000/subscription/${id}`, {
         method: 'DELETE',
     })
     .then(response => response.json())
     .then((data) => {
-        loadSwipers();
+        loadSwipers(data);
     })
     .catch((error) => {
         console.error('Error:', error);

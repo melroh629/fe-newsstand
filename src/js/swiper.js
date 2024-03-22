@@ -45,7 +45,6 @@ export class PressListSwiper extends Swiper {
         if (this.currentImages !== images) {
             this.wrapper.innerHTML = '';
             this.currentImages = images;
-        this.wrapper.innerHTML = '';
         for (let i = 0; i < images.length; i += chunkSize) {
             const slide = document.createElement('div');
             slide.classList.add('swiper-slide');
