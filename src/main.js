@@ -12,13 +12,9 @@ document.addEventListener('DOMContentLoaded', () => {
     loadSwipers();
     loadTabSwipers();
     getHeadlines();
-
 });
 
 activeTab(document.querySelectorAll('.tab-view-type .button-tab'), document.querySelectorAll('#tabViewType > .tab-content'));
-
-
-//여기서 images.json인지 db.json인지 분기처리 하자
 
 let imagePath = './data/images.json';
 
@@ -33,7 +29,7 @@ function loadArticles() {
 }
 
 export function loadSwipers() {
-    Promise.all([loadImageData(imagePath), loadArticles()]).then(([imageList, articles]) => {
+    loadImageData(imagePath).then((imageList) => {
         const pressSwiper = new PressListSwiper('.swiper-wrapper1', '.swiper.grid .button.prev', '.swiper.grid .button.next');
         pressSwiper.createSlidesFromData(imageList, 24);
         handleSubscribe();
@@ -41,10 +37,12 @@ export function loadSwipers() {
     });
 }
 function loadTabSwipers(){
-    const articleSwiper = new ArticleListSwiper('.swiper-wrapper2', '.swiper.type2 .button.prev', '.swiper.type2 .button.next');
+    loadArticles().then(articles => {
+        const articleSwiper = new ArticleListSwiper('.swiper-wrapper2', '.swiper.type2 .button.prev', '.swiper.type2 .button.next');
         articleSwiper.createSlidesByArticles(articles);
         articleSwiper.startAutoSlideChange();
         MoveSlideByTab();
+    });
 }
 document.querySelector('#pressSubscribe').addEventListener('click', function() {
     imagePath = 'http://localhost:3000/subscription';

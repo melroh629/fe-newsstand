@@ -182,7 +182,7 @@ buttons.forEach((btn, index) => {
 }
 
 function translateX(wrapper, index){
-wrapper.style.transform = `translateX(-${index * 100}%)`;
+    wrapper.style.transform = `translateX(-${index * 100}%)`;
 }
 
 
